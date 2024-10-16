@@ -12,8 +12,8 @@ malerts_reports_github = get_malert_data(source = "github")
 
 #geo_data <- st_read("Downloads/geonames-all-cities-with-a-population-1000.geojson")
 
-spain_data <- geo_data %>%
-  filter(cou_name_en == "Spain")
+spain_data <- malerts_reports_github %>%
+  filter(country == "ESP")
 
 # Define the point with given longitude and latitude
 point <- st_point(c(-4.0616770, 36.74924), dim = "XY")
