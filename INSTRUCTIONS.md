@@ -24,8 +24,8 @@ This document outlines the data sources and methods for collecting data for the 
 - **Status**: To be specified
 - **Notes**: Mosquito observation and report data
 
-### 4. Administrative Units
-- **Source**: MosquitoR package
+### 5. Administrative Units
+- **Source**: 
 - **Status**: To be specified
 - **Notes**: 
 
