@@ -3,8 +3,14 @@ devtools::install_github("Mosquito-Alert/mosquitoR", ref = "feature/modularize-m
 library(mosquitoR)
 library(terra)
 
-dem <- get_elevation_data("BGD", level = 2, name_value = "Dhaka")
+dem1 <- get_elevation_data("ESP", level = 2, name_value = "Barcelona")
+dem <- get_elevation_data("JAM", level = 0)
 plot(dem)
+
+#Provinces of Spain as interactive table
+get_gadm_names("Spain", level = 2)
+#Municipalities of Spain as a regular data.frame
+df <- get_gadm_names("Spain", level = 3, view = "table")
 
 
 #Basic version of the function above

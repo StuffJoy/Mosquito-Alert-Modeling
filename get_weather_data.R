@@ -5,15 +5,32 @@ library(mosquitoR)
 
 # Weather Data
 mosquitoR::get_era5_data(country_iso3 = "ESP",
-              start_year = 2025, end_year = 2025,
+              start_year = 2024, end_year = 2025,
               ecmwfr_key = "95690cbe-f660-4dbb-b7a1-9a8d9355ffe6", #This was mine, but switch it whatever yours is
               write_key  = TRUE,
-              output_dir = "data/weather",
+              data_format = "netcdf",
+              output_dir = "data/weather/netcdf",
               verbose = TRUE)
+
+mosquitoR::get_era5_data(country_iso3 = "ESP",
+                         start_year = 2024, end_year = 2025,
+                         ecmwfr_key = "95690cbe-f660-4dbb-b7a1-9a8d9355ffe6", #This was mine, but switch it whatever yours is
+                         write_key  = TRUE,
+                         data_format = "grib",
+                         output_dir = "data/weather/grib",
+                         verbose = TRUE)
 
 
 mosquitoR::compile_era5_monthly(
-  input_dir = "~/Documents/RProjects/Mosquito-Alert-Modeling/data/weather",
+  input_dir = "~/Documents/RProjects/Mosquito-Alert-Modeling/data/weather/netcdf",
+  file_ext  = "nc",
+  prefer    = "stars",
+  recent_n  = 1,
+  verbose   = TRUE
+)
+
+mosquitoR::compile_era5_monthly(
+  input_dir = "~/Documents/RProjects/Mosquito-Alert-Modeling/data/weather/grib",
   file_ext  = "grib",
   prefer    = "terra",
   recent_n  = 1,
