@@ -1,13 +1,31 @@
+devtools::install_github("Mosquito-Alert/mosquitoR", ref = "feature/modularize-modeling-data")
+
+library(mosquitoR)
 library(geodata)
 library(terra)
 library(zoo)
-
+library(sf)
 
 # Landcover Data
 
 # 1) Read the GeoTIFF
 lc <- rast("data/landcover/Spain_Catalu_a_Catalunya_Barcelona_WorldCover_2021.tif")   # path to your file
-plot(lc)
+plot(bcn_map)
+lc_sf <- as.polygons(lc, dissolve = FALSE) |> st_as_sf()
+
+
+lcx = process_landcover_data(
+    lc,
+    bcn_map,
+    write_raster= TRUE,
+    output_filename = "spatial_esp_4_barcelona_landcover.tif",
+    proc_dir = "data/proc",
+    verbose = TRUE
+)
+plot(lcx)
+mask <- rast("data/proc/spatial_esp_4_barcelona_landcover.tif")
+plot(mask)
+summary(lc)
 #> SpatRaster with 1 layer named "Map" (ESA WorldCover class codes)
 
 # 2) Define class codes, names, and colors (matching ESA WorldCover)

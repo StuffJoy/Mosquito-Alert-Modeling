@@ -1,5 +1,6 @@
 devtools::install_github("Mosquito-Alert/mosquitoR", ref = "feature/modularize-modeling-data")
 
+
 library(mosquitoR)
 
 
@@ -24,20 +25,25 @@ mosquitoR::get_era5_data(country_iso3 = "ESP",
 mosquitoR::compile_era5_monthly(
   input_dir = "~/Documents/RProjects/Mosquito-Alert-Modeling/data/weather/netcdf",
   file_ext  = "nc",
-  prefer    = "stars",
-  recent_n  = 1,
-  verbose   = TRUE
-)
-
-mosquitoR::compile_era5_monthly(
-  input_dir = "~/Documents/RProjects/Mosquito-Alert-Modeling/data/weather/grib",
-  file_ext  = "grib",
   prefer    = "terra",
   recent_n  = 1,
   verbose   = TRUE
 )
 
+mosquitoR::compile_era5_data_v2(
+  input_dir = "~/Documents/RProjects/Mosquito-Alert-Modeling/data/weather/grib",
+  recent_n  = 12,
+  verbose   = TRUE
+)
 
+mosquitoR::process_era5_data(
+iso3 = "ESP",
+admin_level = 2,
+admin_name = "Barcelona",
+processed_dir = "data/weather/grib/processed",
+out_dir = "data/proc",
+attach_to_global = TRUE
+)
 
 # 
 # #!/usr/bin/env Rscript

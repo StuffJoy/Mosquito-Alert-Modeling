@@ -2,11 +2,20 @@ devtools::install_github("Mosquito-Alert/mosquitoR", ref = "feature/modularize-m
 
 library(mosquitoR)
 library(terra)
+library(readr)
 
-dem1 <- get_elevation_data("ESP", level = 2, name_value = "Barcelona")
+dem1 <- get_elevation_data("ESP", level = 4, name_value = "Barcelona")
 dem <- get_elevation_data("JAM", level = 0)
-plot(dem)
+plot(dem1)
 
+
+ele <- rast("data/proc/spatial_esp_4_barcelona_elevation.tif")   # path to your file
+plot(ele)
+
+write_rds(bcn_elevation, "data/proc/spatial_esp_4_barcelona_elevation.rds")
+
+bcn_elevation = read_rds("data/proc/spatial_esp_4_barcelona_elevation.rds")
+plot(bcn_elevation)
 #Provinces of Spain as interactive table
 get_gadm_names("Spain", level = 2)
 #Municipalities of Spain as a regular data.frame
