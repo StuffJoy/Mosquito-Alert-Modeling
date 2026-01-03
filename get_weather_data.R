@@ -36,13 +36,14 @@ mosquitoR::compile_era5_data_v2(
   verbose   = TRUE
 )
 
-mosquitoR::process_era5_data(
-iso3 = "ESP",
-admin_level = 2,
-admin_name = "Barcelona",
-processed_dir = "data/weather/grib/processed",
-out_dir = "data/proc",
-attach_to_global = TRUE
+process_era5_data(
+  iso3 = "ESP",
+  admin_level = 4,
+  admin_name = "Barcelona",
+  processed_dir = "data/weather/grib/processed",
+  out_dir = "data/proc",
+  attach_to_global = TRUE,
+  aggregation_unit = "cell"
 )
 
 # 

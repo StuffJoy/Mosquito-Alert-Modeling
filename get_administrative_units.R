@@ -9,7 +9,7 @@ source('helpers/parameters.R')
 
 # Administrative Units
 
-bcn_map <- get_gadm_data("ESP", level = 4, perimeter = FALSE, rds = FALSE)
+bcn_map <- get_gadm_data(iso3 = target_country_iso3, name=target_city, level = target_level, perimeter = FALSE, rds = FALSE)
 summary(bcn_map)
 
 lvl4 = bcn_map$NAME_4
@@ -27,8 +27,13 @@ bcn_grid <- build_tigacell_grid(iso3 = target_country_iso3, gadm_level = target_
 bcn_grid = read_rds("data/proc/spatial_esp_4_barcelona_grid.rds")
 bcn_cells = read_rds("data/proc/spatial_esp_4_barcelona_cells.rds")
 
+plot(bcn_grid)
 
+# Hex Grid
 
+bcn_hex_grid <- build_spatial_grid(bcn_map,out_rds = "data/proc/spatial_esp_4_barcelona_hex_grid.rds")
+plot(bcn_hex_grid)
+ 
 # landcover
 
 lc <- rast("data/landcover/Spain_Catalu_a_Catalunya_Barcelona_WorldCover_2021.tif")   # path to your file
