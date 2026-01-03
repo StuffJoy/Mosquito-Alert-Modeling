@@ -2,7 +2,6 @@ target_country = "Bangladesh"
 target_country_iso3 = "BGD"
 target_level = 2
 target_city = "Dhaka"
-ecmwfr_key = "95690cbe-f660-4dbb-b7a1-9a8d9355ffe6"
 android_start_date = as.POSIXct(strptime('2014-06-14 00:00:00.000000+0000', format="%Y-%m-%d %H:%M:%S%OS%z", tz="gmt"))
 
 raw_pop_density = "data/population/Bangladesh_Dhaka_Dhaka_WorldPop_2020_population_100m.tif"

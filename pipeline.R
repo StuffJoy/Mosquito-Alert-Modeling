@@ -2,6 +2,8 @@ devtools::install_github("Mosquito-Alert/mosquitoR", ref = "feature/modularize-m
 
 library(readr)
 
+source('helpers/keys.R')
+
 source('helpers/ita_3_roma.R')
 source('helpers/esp_4_barcelona.R')
 #source('helpers/bgd_2_dhaka.R')
