@@ -1,5 +1,6 @@
 target_country = "Bangladesh"
 target_country_iso3 = "BGD"
+target_country_iso2 = "BD"
 target_level = 2
 target_city = "Dhaka"
 android_start_date = as.POSIXct(strptime('2014-06-14 00:00:00.000000+0000', format="%Y-%m-%d %H:%M:%S%OS%z", tz="gmt"))
