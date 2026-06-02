@@ -1,6 +1,13 @@
-
+target_country = "Colombia"
+target_country_iso3 = "COL"
+target_country_iso2 = "CO"
+target_level = 2
+target_city = "Miranda"
 android_start_date = as.POSIXct(strptime('2014-06-14 00:00:00.000000+0000', format="%Y-%m-%d %H:%M:%S%OS%z", tz="gmt"))
 
+raw_pop_density = "data/population/Colombia_Cauca_Miranda_WorldPop_2020_population_100m.tif"
+raw_ndvi = "data/ndvi/Colombia_Cauca_Miranda_NDVI_2024-01-31_2024-12-31.tif"
+raw_landcover = "data/landcover/Colombia_Cauca_Miranda_WorldCover_2021.tif"
 
 # key settings ####
 available_cores = parallel::detectCores()
@@ -73,69 +80,3 @@ era5_land_to_single_level <- c(
 #   1650098, # Anopheles Meigen, 1818
 #   1497010  # Culex Linnaeus, 1758
 # )
-
-
-#fields for preparing the data
-base_required_cols <- c(
-  "date",
-  "presence",
-  "source"
-)
-
-daily_vars_to_check <- c(
-  "presence",
-  "sea_days",
-  "ndvi_ddf_proximity",
-  "elevation_m",
-  "source",
-  "year",
-  "landcover_code",
-  "maxTM",
-  "PPT_30d_lag7"
-)
-
-daily_scale_specs <- list(
-  ndvi = list(
-    input = "ndvi_ddf_proximity",
-    output = "ndvi_z",
-    scale_name = "ndvi"
-  ),
-  popdensity = list(
-    input = "popdensity_km2",
-    output = "pop_z",
-    scale_name = "popdensity"
-  ),
-  elevation = list(
-    input = "elevation_m",
-    output = "elev_z",
-    scale_name = "elevation"
-  ),
-  max_temperature = list(
-    input = "maxTM",
-    output = "maxTM_z",
-    scale_name = "maxTM"
-  ),
-  ppt_30d_lag7 = list(
-    input = "PPT_30d_lag7",
-    output = "ppt_30d_lag7_z",
-    transform = "log1p",
-    scale_name = "log1p_PPT_30d_lag7"
-  )
-)
-
-daily_aggregation_specs <- c(
-  presence = "any",
-  sea_days = "first",
-  year = "first",
-  landcover_code = "mode",
-  maxTM = "first",
-  PPT_30d_lag7 = "first",
-  ndvi_ddf_proximity = "mean",
-  elevation_m = "mean"
-)
-
-daily_factor_cols <- c(
-  "year",
-  "landcover_code",
-  "source"
-)
