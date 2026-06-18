@@ -2,11 +2,11 @@ target_country = "Spain"
 target_country_iso3 = "ESP"
 target_country_iso2 = "ES"
 target_level = 4
-target_city = "Barcelona"
+target_city = "Madrid"
 
-raw_pop_density = "data/population/Spain_Catalu_a_Catalunya_Barcelona_WorldPop_2020_population_100m.tif"
-raw_ndvi = "data/ndvi/Spain_Catalu_a_Catalunya_Barcelona_NDVI_2024-01-31_2024-12-31.tif"
-raw_landcover = "data/landcover/Spain_Catalu_a_Catalunya_Barcelona_WorldCover_2021.tif"
+raw_pop_density = "data/population/Spain_Comunidad_de_Madrid_Madrid_WorldPop_2020_population_100m.tif"
+raw_ndvi = "data/ndvi/Spain_Comunidad_de_Madrid_Madrid_NDVI_2024-01-31_2024-12-31.tif"
+raw_landcover = "data/landcover/Spain_Comunidad_de_Madrid_Madrid_WorldCover_2021.tif"
 
 
 
@@ -103,10 +103,9 @@ daily_vars_to_check <- c(
   "sea_days",
   "ndvi_ddf_proximity",
   "elevation_m",
-  "popdensity_km2",
   "source",
   "year",
-  "landcover_class",
+  "landcover_code",
   "maxTM",
   "PPT_3d_lag7",
   "PPT_7d_lag7",
@@ -174,10 +173,6 @@ daily_aggregation_specs <- c(
   year = "first",
   landcover_code = "mode",
   maxTM = "first",
-  PPT_3d_lag7 = "first",
-  PPT_7d_lag7 = "first",
-  PPT_14d_lag7 = "first",
-  PPT_21d_lag7 = "first",
   PPT_30d_lag7 = "first",
   ndvi_ddf_proximity = "mean",
   elevation_m = "mean"
@@ -251,7 +246,6 @@ hourly_aggregation_specs <- c(
   elevation_m = "mean"
 )
 
-
 #Model formulas
 daily_formula_3d <- c(
   "presence ~ s(sea_days, bs = \"cc\", k = 8)",
@@ -304,13 +298,3 @@ daily_formula_bym2_test <- c(
   "car(W, gr = grid_id_800, type = \"bym2\")"
 )
 
-simple_priors <- c(
-  # fixed effects (env + source)
-  brms::set_prior("normal(0, 1)", class = "b"),
-  # intercept
-  brms::set_prior("student_t(3, -1.8, 1)", class = "Intercept"),
-  # smooth terms
-  brms::set_prior("student_t(3, 0, 1)", class = "sds"),
-  # random effects
-  brms::set_prior("student_t(3, 0, 1)", class = "sd")
-)

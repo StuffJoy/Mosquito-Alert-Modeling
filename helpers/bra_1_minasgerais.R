@@ -40,6 +40,7 @@ malert_desired_cols  <- c(
 
 malert_filters = list(
   "movelab_annotation_euro.class_id" = 4,
+  "movelab_annotation_euro.class_id" = 5,
   "type" = "adult"
 )
 
